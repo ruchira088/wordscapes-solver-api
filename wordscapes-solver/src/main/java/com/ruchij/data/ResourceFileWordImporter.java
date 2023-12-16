@@ -7,10 +7,16 @@ import java.net.URL;
 import java.util.stream.Stream;
 
 public class ResourceFileWordImporter implements WordImporter {
+	private static final String WORDS_LIST_FILE_NAME = "words.txt";
+
 	private final String fileName;
 
 	public ResourceFileWordImporter(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public ResourceFileWordImporter() {
+		this(WORDS_LIST_FILE_NAME);
 	}
 
 	@Override

@@ -1,9 +1,8 @@
 package com.ruchij;
 
-import com.ruchij.model.Node;
+import com.ruchij.models.Node;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordscapesSolver {
@@ -13,12 +12,18 @@ public class WordscapesSolver {
 		this.data = data;
 	}
 
-	public List<String> findValues(List<Character> characters) {
-		return findValues(characters, data);
+	public List<String> findValues(String characters) {
+		return findValues(characters.chars().mapToObj(character -> (char) character).toList());
 	}
 
-	private List<String> findValues(List<Character> characters, Node<Character> node) {
-		List<String> values = new ArrayList<>();
+	public List<String> findValues(List<Character> characters) {
+		Comparator<String> sortByLength = Comparator.comparing(String::length).reversed();
+		Comparator<String> comparator = sortByLength.thenComparing(Comparator.naturalOrder());
+		return findValues(characters, data).stream().sorted(comparator).toList();
+	}
+
+	private Set<String> findValues(List<Character> characters, Node<Character> node) {
+		Set<String> values = new HashSet<>();
 
 		Node<Character> nullNode = node.children().get(null);
 

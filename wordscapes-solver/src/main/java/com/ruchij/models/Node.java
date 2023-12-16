@@ -1,4 +1,4 @@
-package com.ruchij.model;
+package com.ruchij.models;
 
 import java.util.*;
 

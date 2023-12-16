@@ -1,6 +1,6 @@
 package com.ruchij.data;
 
-import com.ruchij.model.Node;
+import com.ruchij.models.Node;
 
 import java.util.List;
 import java.util.stream.Stream;
