@@ -14,7 +14,7 @@ class WordscapesSolverTest {
 		WordscapesSolver wordscapesSolver = new WordscapesSolver(wordImporter.importData());
 
 		List<String> result = wordscapesSolver.findValues("thi");
-		Assertions.assertEquals(List.of(), result);
+		Assertions.assertEquals(List.of("hit", "hi", "th", "ti"), result);
 	}
 
 }
