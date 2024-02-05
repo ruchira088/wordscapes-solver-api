@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordscapes-solver-api-deployment
+  namespace: {{ namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: wordscapes-solver-api
+      branch: {{ git_branch }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wordscapes-solver-api
+        branch: {{ git_branch }}
+    spec:
+      containers:
+        - name: wordscapes-solver-api-container
+          image: ghcr.io/ruchira088/wordscapes-solver-api:{{ git_branch }}-{{ git_commit }}
+          envFrom:
+            - configMapRef:
+                name: wordscapes-solver-api-data-config-map
+            - secretRef:
+                name: wordscapes-solver-api-secrets
+          readinessProbe:
+            httpGet:
+              port: springboot-port
+              path: /solver/test
+              httpHeaders:
+                - name: X-Correlation-ID
+                  value: k8s-readiness-probe
+          livenessProbe:
+            httpGet:
+              port: springboot-port
+              path: /solver/test
+              httpHeaders:
+                - name: X-Correlation-ID
+                  value: k8s-liveness-probe
+          startupProbe:
+            httpGet:
+              port: springboot-port
+              path: /solver/test
+              httpHeaders:
+                - name: X-Correlation-ID
+                  value: k8s-startup-probe
+          ports:
+            - containerPort: 8080
+              name: springboot-port
+          volumeMounts:
+            - mountPath: /opt/data
+              name: file-config-map
+      volumes:
+        - name: file-config-map
+          configMap:
+            name: wordscapes-solver-api-file-config-map
+      imagePullSecrets:
+        - name: docker-registry-credentials
