@@ -6,6 +6,11 @@ import com.ruchij.models.Node;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
+
+import java.time.Clock;
+import java.util.Properties;
 
 @SpringBootApplication
 public class WebAppApplication {
@@ -22,4 +27,23 @@ public class WebAppApplication {
 		return new WordscapesSolver(data);
 	}
 
+	@Bean
+	PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+		PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer =
+			new PropertySourcesPlaceholderConfigurer();
+
+		propertySourcesPlaceholderConfigurer.setLocation(new ClassPathResource("git.properties"));
+
+		return propertySourcesPlaceholderConfigurer;
+	}
+
+	@Bean
+	Properties systemProperties() {
+		return System.getProperties();
+	}
+
+	@Bean
+	Clock clock() {
+		return Clock.systemDefaultZone();
+	}
 }
