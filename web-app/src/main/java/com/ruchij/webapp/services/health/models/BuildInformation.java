@@ -3,9 +3,6 @@ package com.ruchij.webapp.services.health.models;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.time.Instant;
-import java.time.ZonedDateTime;
-
 @Component
 public class BuildInformation {
 	@Value("${git.build.version}")

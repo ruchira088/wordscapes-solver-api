@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public interface WordImporter {
+	static WordImporter create(String... words) {
+		return new ListWordImporter(List.of(words));
+	}
+
 	Stream<String> words();
 
 	default Node<Character> importData() {
@@ -17,10 +21,6 @@ public interface WordImporter {
 		});
 
 		return root;
-	}
-
-	static WordImporter create(String... words) {
-		return new ListWordImporter(List.of(words));
 	}
 }
 

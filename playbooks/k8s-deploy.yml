@@ -31,20 +31,20 @@
 
         - name: Deploy Wordscapes Solver API
           block:
-          - name: Create data ConfigMap
-            command: kubectl apply -f k8s-output/DataConfigMap.yaml --kubeconfig {{ kubeconfig }}
+            - name: Create data ConfigMap
+              command: kubectl apply -f k8s-output/DataConfigMap.yaml --kubeconfig {{ kubeconfig }}
 
-          - name: Create file ConfigMap
-            command: kubectl apply -f k8s-output/FileConfigMap.yaml --kubeconfig {{ kubeconfig }}
+            - name: Create file ConfigMap
+              command: kubectl apply -f k8s-output/FileConfigMap.yaml --kubeconfig {{ kubeconfig }}
 
-          - name: Create Secrets
-            command: kubectl apply -f k8s-output/Secrets.yaml --kubeconfig {{ kubeconfig }}
+            - name: Create Secrets
+              command: kubectl apply -f k8s-output/Secrets.yaml --kubeconfig {{ kubeconfig }}
 
-          - name: Deploy application
-            command: kubectl apply -f k8s-output --kubeconfig {{ kubeconfig }}
+            - name: Deploy application
+              command: kubectl apply -f k8s-output --kubeconfig {{ kubeconfig }}
 
-          - name: Wait for successful deployment
-            command: kubectl rollout status deployment wordscapes-solver-api-deployment --kubeconfig {{ kubeconfig }} -n {{ namespace }}
+            - name: Wait for successful deployment
+              command: kubectl rollout status deployment wordscapes-solver-api-deployment --kubeconfig {{ kubeconfig }} -n {{ namespace }}
 
     - name: Clean up output directory
       file:

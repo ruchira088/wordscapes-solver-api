@@ -5,7 +5,6 @@ import com.ruchij.webapp.services.health.models.ServiceInformation;
 import org.springframework.stereotype.Service;
 
 import java.time.Clock;
-import java.time.Instant;
 import java.util.Properties;
 
 @Service

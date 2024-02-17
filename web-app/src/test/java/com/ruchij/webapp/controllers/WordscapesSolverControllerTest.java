@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(WordscapesSolverController.class)
 class WordscapesSolverControllerTest {
 	private static final String EXPECTED_JSON =
-			"[\"moved\",\"demo\",\"dome\",\"dove\",\"mode\",\"move\",\"doe\",\"mod\",\"ode\",\"do\",\"em\",\"me\"]";
+		"[\"moved\",\"demo\",\"dome\",\"dove\",\"mode\",\"move\",\"doe\",\"mod\",\"ode\",\"do\",\"em\",\"me\"]";
 
 	@Autowired
 	private MockMvc mvc;

@@ -32,7 +32,7 @@ public record Node<T>(List<T> path, T value, Map<T, Node<T>> children) {
 				}
 			);
 
-		if (next != null){
+		if (next != null) {
 			childNode.insert(values);
 		}
 	}
