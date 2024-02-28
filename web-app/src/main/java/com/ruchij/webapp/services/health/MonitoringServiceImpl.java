@@ -8,7 +8,7 @@ import java.time.Clock;
 import java.util.Properties;
 
 @Service
-public class HealthServiceImpl implements HealthService {
+public class MonitoringServiceImpl implements MonitoringService {
 	private final String serviceName = "wordscapes-solver-api";
 	private final String serviceVersion;
 	private final String javaVersion;
@@ -18,7 +18,7 @@ public class HealthServiceImpl implements HealthService {
 
 	private final Clock clock;
 
-	public HealthServiceImpl(BuildInformation buildInformation, Properties properties, Clock clock) {
+	public MonitoringServiceImpl(BuildInformation buildInformation, Properties properties, Clock clock) {
 		this.serviceVersion = buildInformation.getBuildVersion();
 		this.gitBranch = buildInformation.getGitBranch();
 		this.gitCommit = buildInformation.getGitCommit();

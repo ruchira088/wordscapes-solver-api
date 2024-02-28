@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  web-app:
+    image: ghcr.io/ruchira088/wordscapes-solver-api:main
+    ports:
+      - "8080:8080"
