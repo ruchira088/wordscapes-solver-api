@@ -16,9 +16,10 @@ public class WordscapesSolver {
 		return findValues(characters.chars().mapToObj(character -> (char) character).toList());
 	}
 
-	public List<String> findValues(List<Character> characters) {
+	public List<String> findValues(List<Character> input) {
 		Comparator<String> sortByLength = Comparator.comparing(String::length).reversed();
 		Comparator<String> comparator = sortByLength.thenComparing(Comparator.naturalOrder());
+		List<Character> characters = input.stream().map(Character::toLowerCase).toList();
 		return findValues(characters, data).stream().sorted(comparator).toList();
 	}
 
