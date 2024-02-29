@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.Clock;
 import java.util.Properties;
@@ -45,5 +47,17 @@ public class WebAppApplication {
 	@Bean
 	Clock clock() {
 		return Clock.systemDefaultZone();
+	}
+
+	@Bean
+	public WebMvcConfigurer webMvcConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry corsRegistry) {
+				corsRegistry
+					.addMapping("/**")
+					.allowedOriginPatterns("*");
+			}
+		};
 	}
 }
