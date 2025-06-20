@@ -33,11 +33,8 @@ jobs:
             ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
             ${{ runner.os }}-maven-
 
-      - name: Assemble
-        run: ./gradlew assemble
-
       - name: Execute test suite
-        run: ./gradlew test
+        run: ./mvnw test
 
   publish-docker-image:
     runs-on: ubuntu-latest
