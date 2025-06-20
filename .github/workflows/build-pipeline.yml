@@ -78,8 +78,8 @@ jobs:
           role-session-name: javalin-seed-publish
           role-to-assume: "arn:aws:iam::365562660444:role/github_iam_role"
 
-      - name: Build and publish Docker images
-        run: ansible-playbook playbooks/build-and-publish-docker-images.yml
+      - name: Build and publish Docker image
+        run: ansible-playbook playbooks/build-and-publish-docker-image.yml
 
   deploy-to-k8s:
     runs-on: ubuntu-latest
